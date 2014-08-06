@@ -12,7 +12,8 @@
     "regenerator",
     "es6",
     "generators",
-    "loader"
+    "loader",
+    "co"
   ],
   "author": "PJ Eby <pje@telecommunity.com>",
   "license": "ISC",
