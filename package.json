@@ -2,6 +2,7 @@
   "name": "regenerator-loader",
   "version": "1.0.0",
   "description": "Regenerator loader for Webpack",
+  "repository": "git@github.com:pjeby/regenerator-loader.git",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Use regenerator's tests\" && exit 0"
