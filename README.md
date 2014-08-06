@@ -4,7 +4,7 @@ This is a simple loader that lets you use Facebook's [Regenerator](http://facebo
 
 To use it, install it in your project's local `node_modules`, then simply add `regenerator!` to the start of the `require()` string for any module that uses generators.  Or, to avoid cluttering up your code with prefixes, use Webpack's standard configuration methods to specify `regenerator` as a  preloader, postloader, or normal loader for whatever modules you want.
 
-The simplest method of all, however, is just to specify it as a post-loader for your *entire project*, since modules without generator functions will not be affected.  (A simple regular expression test is used to bypass such modules, so no time is wasted parsing them.)
+The simplest method of all, however, is just to specify it as a post-loader for your *entire project*, since modules without generator functions will not be affected.  (The Regenerator module uses a simple regular expression test to bypass such modules, so no time is wasted parsing or compiling them.)
 
 ### Source Maps and Debug Support
 
