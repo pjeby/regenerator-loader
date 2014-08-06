@@ -1,0 +1,21 @@
+{
+  "name": "regenerator-loader",
+  "version": "1.0.0",
+  "description": "Regenerator loader for Webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Use regenerator's tests\" && exit 0"
+  },
+  "keywords": [
+    "webpack",
+    "regenerator",
+    "es6",
+    "generators",
+    "loader"
+  ],
+  "author": "PJ Eby <pje@telecommunity.com>",
+  "license": "ISC",
+  "peerDependencies": {
+    "regenerator": "^0.4.12"
+  }
+}
