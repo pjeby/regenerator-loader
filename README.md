@@ -4,13 +4,18 @@ This is a simple loader that lets you use Facebook's [Regenerator](http://facebo
 
 To use it, install it in your project's local `node_modules`, then simply add `regenerator!` to the start of the `require()` string for any module that uses generators.  Or, to avoid cluttering up your code with prefixes, use Webpack's standard configuration methods to specify `regenerator` as a  preloader, postloader, or normal loader for whatever modules you want.
 
-The simplest method of all, however, is just to specify it as a post-loader for your *entire project*, since modules without generator functions will not be affected.  (The Regenerator module uses a simple regular expression test to bypass such modules, so no time is wasted parsing or compiling them.)
+The simplest method of all, however, is just to specify it as a post-loader for your *entire project*, since modules without generator functions will not be affected.  regenerator-loader uses a simple regular expression test to bypass such modules, so no time is wasted parsing or compiling them.)
 
-### Source Maps and Debug Support
+(Note: because Regenerator itself does not yet officially support source maps, no source map will exist for modules containing async or generator functions.  Source maps are passed through unchanged for other modules, though, so you can still use regenerator-loader as a project-wide post-loader.)
 
-Because Facebook's Regenerator module doesn't fully support source maps yet, any modules that contain generator functions will not have a source map.  (However, since only those modules that actually contain generator functions will be affected, it should still be safe to use this loader for *all* modules in your project.  The other modules will retain their source maps, if applicable.)
+### The Regenerator Runtime
 
-To save space, only one copy of the *minimized* Regenerator runtime is included in your project by default.  Instead of including the runtime in each module, a `require('regenerator/runtime/min')` prefix is added to the beginning of those modules that actually include generator functions, to ensure that the runtime will be initialized before any generator functions are defined or used.
+To save space, only one copy of the Regenerator runtime is included in your project by default.  Instead of including the runtime in each module, a  `require()` statement is added to the beginning of those modules that actually include generator functions, to ensure that the runtime will be initialized before any generator functions are defined or used.
 
-Therefore, if you need to use the development version of the Regenerator runtime, you should configure Webpack to alias all references to `regenerator/runtime/min` with `regenerator/runtime/dev`, so that your project will use the un-minimized version instead.
+### What's New In 2.0
 
+Due to changes in Regenerator, regenerator-loader 2.0 no longer distinguishes between a development and minimized Regenerator runtime (since Regenerator doesn't any more, either).
+
+(This change is considered breaking because if you were previously relying on the distinction between runtimes, or for whatever reason are expecting the generated requires to still reference `regenerator/runtime/min`, you'll need to change your build setup.  If you have no idea what I'm talking about, then you aren't relying on it and you can just go ahead and upgrade.)
+
+The only other change is that now regenerator-loader implements its own, slightly more strict check for whether a module contains generator or async functions, as the current version of Regenerator has occasional false positives.  A module will *only* be processed by Regenerator if it contains a `function *` or `async function` somewhere, even if it's in a comment.  (And the resulting processed code will only be used if the generated code references the Regenerator runtime; otherwise, the unprocessed original source  is used.)

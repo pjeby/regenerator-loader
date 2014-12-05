@@ -1,16 +1,22 @@
-var regenerator = require('regenerator');
+var regenerator = require('regenerator'),
+    detectCompile = /\bfunction\s*\*|\basync\s+function\b/,
+    detectRuntime = /\bregeneratorRuntime\b/;
 
 module.exports = function (source, map) {
+
     this.cacheable && this.cacheable();
-    var result = regenerator(source);
-    if (result !== source) {
-        // Ensure that regenerator runtime is included and initialized,
-        // and drop source map, since Regenerator doesn't support it (yet)       
-        return "require('regenerator/runtime/min');\n"+result;
+
+    if (detectCompile.test(source)) {
+        var result = regenerator.compile(source);
+        if (result.code !== source && detectRuntime.test(result.code))  {
+            return "var regneratorRuntime = require('regenerator/runtime');\n"
+                   + result.code;
+        }
     }
-    // No change; pass through original source and map, if any, via async mode
+    
     this.async().apply(
         this, [null].concat(Array.prototype.slice.call(arguments))
     );
+
 };
 

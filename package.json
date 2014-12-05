@@ -1,6 +1,6 @@
 {
   "name": "regenerator-loader",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Regenerator loader for Webpack",
   "repository": "git@github.com:pjeby/regenerator-loader.git",
   "main": "index.js",
@@ -18,6 +18,6 @@
   "author": "PJ Eby <pje@telecommunity.com>",
   "license": "ISC",
   "peerDependencies": {
-    "regenerator": "^0.4.12"
+    "regenerator": "^0.8.0"
   }
 }
