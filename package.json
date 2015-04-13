@@ -19,5 +19,9 @@
   "license": "ISC",
   "peerDependencies": {
     "regenerator": "^0.8.0"
+  },
+  "dependencies": {
+    "recast": "^0.10.11",
+    "source-map": "^0.4.2"
   }
 }
