@@ -6,14 +6,16 @@ module.exports = function (source, map) {
 
     this.cacheable && this.cacheable();
 
+    var result = source;
     if (detectCompile.test(source)) {
-        var result = regenerator.compile(source);
-        if (result.code !== source && detectRuntime.test(result.code))  {
-            return "var regneratorRuntime = require('regenerator/runtime');\n"
-                   + result.code;
-        }
+        result = regenerator.compile(source).code;
     }
-    
+
+    if (detectRuntime.test(result))  {
+        return "var regneratorRuntime = require('regenerator/runtime');\n"
+               + result;
+    }
+
     this.async().apply(
         this, [null].concat(Array.prototype.slice.call(arguments))
     );
