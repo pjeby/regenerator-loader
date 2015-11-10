@@ -9,7 +9,7 @@ module.exports = function (source, map) {
     if (detectCompile.test(source)) {
         var result = regenerator.compile(source);
         if (result.code !== source && detectRuntime.test(result.code))  {
-            return "var regneratorRuntime = require('regenerator/runtime');\n"
+            return "var regeneratorRuntime = require('regenerator/runtime');\n"
                    + result.code;
         }
     }
