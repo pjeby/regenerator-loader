@@ -12,6 +12,10 @@ The simplest method of all, however, is just to specify it as a post-loader for 
 
 To save space, only one copy of the Regenerator runtime is included in your project by default.  Instead of including the runtime in each module, a  `require()` statement is added to the beginning of those modules that actually include generator functions, to ensure that the runtime will be initialized before any generator functions are defined or used.
 
+### What's New in 3.0
+
+Due to changes in Regenerator, regenerator-loader 3.0 now requires the `regenerator-runtime` package to operate without deprecation warnings.  Generated modules will now `require('regenerator-runtime/runtime')` instead of requiring `regenerator/runtime`.
+
 ### What's New In 2.0
 
 Due to changes in Regenerator, regenerator-loader 2.0 no longer distinguishes between a development and minimized Regenerator runtime (since Regenerator doesn't any more, either).
