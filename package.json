@@ -1,6 +1,6 @@
 {
   "name": "regenerator-loader",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Regenerator loader for Webpack",
   "repository": "git@github.com:pjeby/regenerator-loader.git",
   "main": "index.js",
@@ -19,6 +19,6 @@
   "license": "ISC",
   "peerDependencies": {
     "regenerator": "^0.8.46",
-    "regenerator-runtime": "^0.9.5"
+    "regenerator-runtime": "^0.9.5||^0.10.0"
   }
 }
